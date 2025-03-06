@@ -13,6 +13,15 @@ pip install instagrapi
 To use the desktop app which provides buttons for easy download, as tkinter comes preinstalled with python,
 just clone this repository or directly download Desktop_app.py python program, modify the program to replace
 USERNAME and PASSWORD with the username and password of your account you intend to use for downloading.Run the
-application, select your folder for saving the downloads, type in the username whose content you wish to download and then press on the button for what you need. Currently(March 3rd 25,5am IST) unfortunately
-there are bugs asocuated with full reels download and download all posts and latest reel button
-so currrently only stories and latest post button works. This will be resolved very soon within the next two days itself.
+application, select your folder for saving the downloads, type in the username whose content you wish to download and then press on the button for what you need. Currently(March 7th 25,5am IST) unfortunately
+for the desktop app only download stories work perfectly.Everything else will be made fully functional and 
+integrated into the app very soon. In the meantime, you can try out the Individual programs
+
++ downloadPosts.py downloads all posts(meaning anything except reel)associted with an instagram account with filename post-index_date_of_posting_multiplephotoIndex.ext
++ downloadReels.py downloads all reels associted with an account and their thumbs with each filename saved as reel-index_date.ext
++ downloadStories.py downloads all stories of an account and save each story as story-index_date_timeInUtc.ext
++ downloadbyUrl.py downloads the content associated with the url specified which can be a post or reel and saved as content_date_index.ext
++ download tagged and download highlights coming soon
+
+All the downloads have been made to run as fast as possible, but speed will ultimately depend on your network speed
+Kindly ignore keyError while running downloadPosts.py

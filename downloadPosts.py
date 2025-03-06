@@ -7,7 +7,7 @@ from datetime import datetime
 # Instagram Login Credentials
 USERNAME = "your_username"
 PASSWORD = "your_password"
-SAVE_FOLDER = r"Path to the folder where you want the reels saved"
+SAVE_FOLDER = r"Path to the folder where you want the posts saved"
 SESSION_FILE = "session.json"
 
 # Initialize Instagram Client

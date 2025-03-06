@@ -51,6 +51,7 @@ def download_reel(index, reel):
 
     # Generate Filename (Only Reel Index & Date)
     filename = os.path.join(SAVE_FOLDER, f"reel{index}_{date_str}.mp4")
+    thumb_filename = os.path.join(SAVE_FOLDER, f"reel{index}_{date_str}_thumb.jpg")
 
     try:
         response = requests.get(reel.video_url, stream=True)
@@ -61,6 +62,14 @@ def download_reel(index, reel):
                 file.write(chunk)
 
         print(f"✅ Downloaded Reel {index} ({date_str}): {filename}")
+        # Download Thumbnail (if available)
+        if reel.thumbnail_url:
+            response = requests.get(reel.thumbnail_url, stream=True)
+            response.raise_for_status()
+            with open(thumb_filename, "wb") as file:
+                for chunk in response.iter_content(chunk_size=16384):
+                    file.write(chunk)
+            print(f"✅ Downloaded Thumbnail for Reel {index}: {thumb_filename}")
     
     except Exception as e:
         print(f"❌ Error downloading Reel {index}: {e}")
