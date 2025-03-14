@@ -6,6 +6,10 @@ Install instagrapi which relies on Instagrams official API for fetching content 
 ```
 pip install instagrapi
 ```
+Almost everything is working now, I just need to assemble everything into a desktop app
+Latest downloadBydate.py program downloads reels or posts between any given two dates window or posted on a single date.
+It even gets all the details associated with each post including the comments and saves it as separate .txt files for each post/reel.
+
 #Dektop application
 
 ![image of the app in action](appimg1.png "Instagram Downloader in Action")
