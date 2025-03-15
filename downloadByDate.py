@@ -50,23 +50,11 @@ def download_file(url, filename):
         print(f"✅ Downloaded: {filename}")
     except Exception as e:
         print(f"❌ Error downloading {filename}: {e}")
-
 # Function to check if media is within date range
+
 def is_within_date_range(media, start_date, end_date):
     media_date = media.taken_at.strftime("%Y-%m-%d")
     return start_date <= media_date <= end_date
-
-# Fetch reels efficiently using pagination
-def fetch_reels_within_dates(user_id, start_date, end_date):
-    reels = []
-    for page in cl.user_clips_paginated_v1(user_id):
-        for reel in page:
-            media_date = reel.taken_at.strftime("%Y-%m-%d")
-            if media_date < start_date:
-                return reels  # Stop fetching once out of date range
-            if start_date <= media_date <= end_date:
-                reels.append(reel)
-    return reels
 
 
 def fetch_all_comments_safe(media_id, max_comments=100):
@@ -150,7 +138,7 @@ def download_reels_between_dates(username, start_date, end_date=None):
     user_id = cl.user_id_from_username(username)
     if not end_date:
         end_date = start_date
-    reels = fetch_reels_within_dates(user_id, start_date, end_date)
+    reels = cl.user_clips(user_id)
 
     def download_reel(index, reel):
         date_str = reel.taken_at.strftime("%Y-%m-%d")
@@ -161,6 +149,7 @@ def download_reels_between_dates(username, start_date, end_date=None):
         download_file(reel.video_url, video_filename)
         if reel.thumbnail_url:
             download_file(reel.thumbnail_url, thumb_filename)
+        time.sleep(2)
         save_post_info(reel, metadata_filename)
 
         time.sleep(random.uniform(2, 5))  # Random delay to prevent detection
@@ -171,13 +160,13 @@ def download_reels_between_dates(username, start_date, end_date=None):
         if is_within_date_range(reel, start_date, end_date):
             reels_within_date.append(reel)
     
-    for index, reel in enumerate(reels, start=1):
+    for index, reel in enumerate(reels_within_date, start=1):
         thread = threading.Thread(target=download_reel, args=(index, reel))
         threads.append(thread)
         thread.start()
         time.sleep(random.uniform(1, 3))  # Additional delay between thread starts
     
-    print(f"total no of reels to download={len(reels_within_date)}\n")
+    #print(f"total no of reels to download={len(reels_within_date)}\n")
     for thread in threads:
         thread.join()
     print(f"✅ Reels from {start_date} to {end_date} downloaded!")
@@ -232,8 +221,9 @@ def download_posts_between_dates(username, start_date, end_date=None):
     print(f"✅ Posts from {start_date} to {end_date} downloaded!")
 
 # Example Usage:
-#comment out the one you don't need i.e to download reels add # to begining of line 237(last line)
+# Example Usage:
+#comment out the one you don't need i.e to download reels add # to begining of line 228(last line)
 #if end date is not given, reels or posts associated with the single date given will be downloaded
-download_reels_between_dates("target_username", "start_date","end_date")
+download_reels_between_dates("tatget_username", "start_date","end_date")
 download_posts_between_dates("target_username", "2025-03-01", "2025-03-12")
 
