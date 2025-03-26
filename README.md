@@ -10,11 +10,13 @@ Almost everything is working now, I just need to assemble everything into a desk
 Latest downloadBydate.py program downloads reels or posts between any given two dates window or posted on a single date.
 It even gets all the details associated with each post including the comments and saves it as separate .txt files for each post/reel.
 
-**The easiest and most useful and fastest way to download something is to use _downloadbyURl.py_ to download any post or reel by copy pasting it's url into the quotes within instagram_url.It not only downloads instantly the reel videos along with its thumbnails or photo/multiple photos/combination of photos and videos included in the post and saves it with an easily identifiable name having the date and index such as post_2025-03-16_1,post_2025-03-16_2 for multiple photo post, but also correctly extracts all the information associated with the post such as caption,location etc as well as all the comments and saves it into a .txt file as shown in the image below**
+**The easiest and most useful and fastest way to download something is to use _downloadbyURl.py_ to download any post or reel by copy pasting it's url into the quotes within instagram_url. It not only downloads instantly the reel videos along with its thumbnails or photo/multiple photos/combination of photos and videos included in the post and saves it with an easily identifiable name having the date and index such as post_2025-03-16_1, post_2025-03-16_2 for multiple photo post,  but also correctly extracts all the information associated with the post such as caption, location etc as well as all the comments and saves it into a .txt file as shown in the image below**
 
 ![image of details text file](cd3Sr.png "This is how the info will be saved")
 
-# Dektop application
+**You only need to replace amount=0 in the code with the number of latest reels or posts you want to get only that many number of latest posts or reels associated with an account**
+
+# Dektop application (currently this version only stories works will be updated very soon)
 
 ![image of the app in action](appimg1.png "Instagram Downloader in Action")
 
