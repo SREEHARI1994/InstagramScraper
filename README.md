@@ -6,7 +6,26 @@ Install instagrapi which relies on Instagrams official API for fetching content 
 ```
 pip install instagrapi
 ```
-Almost everything is working now, I just need to assemble everything into a desktop app
+
+# Dektop application
+![image of the app in action](app1.png "Instagram Downloader in Action")
+
+
+To use the under development Desktop app which provides buttons for easy download,as tkinter comes preinstalled with python,
+just clone this repositor and open DesktopApplication Folder and click on app.py python program.
+When you use for the first time, you will be asked to enter username and password of your instagram acc
+used for scraping. After you press the login button you will reach the page shown in image above. Copy paste
+the url of the post or reel you wish to download, click browse button to chose where to download and then finally click on Download Url button and the execution details of the program will be displayed in the terminal window. Or to get stories, enter the username of the acc into Target Username field, chose folder and click on
+Download Stories button
+Currently(uly 15th 25,8am IST) unfortunately
+for the desktop app only Download stories and Download Url work perfectly.Everything else will be made fully functional and 
+integrated into the app very soon. In the meantime, you can try out the Individual programs for your other needs
+Please note that once you login, a 'session.js' file will be saved in the same folder as containing the app.py file
+and then unless and until this session.js file is deleted, you won't have to login again which is also the recommended way as Insta flags multiple logins as spam and takes action. Do not delete this session file unless
+intagram challenged you, thereby requiring you to enter code sent via email or recapatcha and then sometimes your old login session is no longer valid thereby requiring you to login again. Even for such a case, try if the downloads are working before removing session file.
+**Ignore Key Error while using Download Url**
+
+
 **downloadBydate.py** program downloads reels or posts between any given two dates window or posted on a single date.It even gets all the details associated with each post including the comments and saves it as separate .txt files for each post/reel.
 The latest **downloadHighlights.py** program correctly downloads and saves all highlights of an user into their
 respective folders having same name as the highlights section name given by that user and then under each
@@ -17,17 +36,6 @@ highlights folder all the stories under that highlights are saved as story1_date
 ![image of details text file](cd3Sr.png "This is how the info will be saved")
 
 **You only need to replace amount=0 in the code with the number of latest reels or posts you want to get only that many number of latest posts or reels associated with an account**
-
-# Dektop application (currently this version only stories works will be updated very soon)
-I just need to assemble all this individual correctly working python scripts into a single Tkinter application
-![image of the app in action](appimg1.png "Instagram Downloader in Action")
-
-To use the under development Desktop app which provides buttons for easy download, as tkinter comes preinstalled with python,
-just clone this repository or directly download Desktop_app.py python program, modify the program to replace
-USERNAME and PASSWORD with the username and password of your account you intend to use for downloading.Run the
-application, select your folder for saving the downloads, type in the username whose content you wish to download and then press on the button for what you need. Currently(March 7th 25,5am IST) unfortunately
-for the desktop app only download stories work perfectly.Everything else will be made fully functional and 
-integrated into the app very soon. In the meantime, you can try out the Individual programs
 
 + downloadPosts.py downloads all posts(meaning anything except reel)associted with an instagram account with filename post-index_date_of_posting_multiplephotoIndex.ext
 + downloadReels.py downloads all reels associted with an account and their thumbs with each filename saved as reel-index_date.ext
