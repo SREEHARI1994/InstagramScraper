@@ -17,7 +17,7 @@ def login(username, password):
     if os.path.exists(SESSION_FILE):
         try:
             cl.load_settings(SESSION_FILE)
-            cl.login(username, password, relogin=True)
+            #cl.login(username, password, relogin=True)
             print("Logged in using saved session.")
             return cl
         except Exception as e:

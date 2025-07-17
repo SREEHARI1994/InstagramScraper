@@ -8,24 +8,41 @@ pip install instagrapi
 ```
 
 # Dektop application
-![image of the app in action](app1.png "Instagram Downloader in Action")
 
+Images of the App In Action
+![image of the app in action](Screenshots/appBydate1.png "Instagram Downloader in Action for downloading reels within a given date range")
+![image of the app in action](Screenshots/appBydate2.png )
+![image of the app in action](Screenshots/appBydate3.png )
+![image of the app in action](Screenshots/appBydate4.png )
+![image of the app in action](Screenshots/appBydate5.png )
+![image of the app in action](Screenshots/appReels1.png )
+![image of the app in action](Screenshots/appReels2.png )
+![image of the app in action](Screenshots/Stories1.png )
+![image of the app in action](Screenshots/Stories2.png )
 
-To use the under development Desktop app which provides buttons for easy download,as tkinter comes preinstalled with python,
-just clone this repositor and open DesktopApplication Folder and click on app.py python program.
+To use the Desktop app which provides buttons for easy download,as tkinter comes preinstalled with python,
+just clone this repository and open DesktopApplication Folder and then click on app.py python program.
 When you use for the first time, you will be asked to enter username and password of your instagram acc
-used for scraping. After you press the login button you will reach the page shown in image above. Copy paste
+used for scraping. After you press the login button, you will reach the window shown in images above.Copy paste
 the url of the post or reel you wish to download, click browse button to chose where to download and then finally click on Download Url button and the execution details of the program will be displayed in the terminal window. Or to get stories, enter the username of the acc into Target Username field, chose folder and click on
-Download Stories button
-Currently(uly 15th 25,8am IST) unfortunately
-for the desktop app only Download stories and Download Url work perfectly.Everything else will be made fully functional and 
-integrated into the app very soon. In the meantime, you can try out the Individual programs for your other needs
+Download Stories button.Just giving username and folder location and then clicking on Download Posts or 
+Download Reels buttons will download all posts(posts stands for all non reel media) and all reels will be
+downloaded to that folder respectively whereas setting the start and end date will only download posts or 
+reels within that date range and setting the Number of things field will only download that many latest 
+posts or reels(pinned posts or reels will come first followed by the most recently uploaded one)
+(Download Highlights script in the Individual Scripts Folder is working fine and will be soon integrated into
+the app)
+If you prefer running individual python scripts for your specific needs, then you might consider the programs
+in Individual Scripts FOlder
+
 Please note that once you login, a 'session.js' file will be saved in the same folder as containing the app.py file
 and then unless and until this session.js file is deleted, you won't have to login again which is also the recommended way as Insta flags multiple logins as spam and takes action. Do not delete this session file unless
 intagram challenged you, thereby requiring you to enter code sent via email or recapatcha and then sometimes your old login session is no longer valid thereby requiring you to login again. Even for such a case, try if the downloads are working before removing session file.
+
 **Ignore Key Error while using Download Url**
+**Ignore any other Error too as long as your download works**
 
-
+**Details Of Scripts**
 **downloadBydate.py** program downloads reels or posts between any given two dates window or posted on a single date.It even gets all the details associated with each post including the comments and saves it as separate .txt files for each post/reel.
 The latest **downloadHighlights.py** program correctly downloads and saves all highlights of an user into their
 respective folders having same name as the highlights section name given by that user and then under each
@@ -33,7 +50,7 @@ highlights folder all the stories under that highlights are saved as story1_date
 
 **The easiest and most useful and fastest way to download something is to use _downloadbyURl.py_ to download any post or reel by copy pasting it's url into the quotes within instagram_url. It not only downloads instantly the reel videos along with its thumbnails or photo/multiple photos/combination of photos and videos included in the post and saves it with an easily identifiable name having the date and index such as post_2025-03-16_1, post_2025-03-16_2 for multiple photo post,  but also correctly extracts all the information associated with the post such as caption, location etc as well as all the comments and saves it into a .txt file as shown in the image below**
 
-![image of details text file](cd3Sr.png "This is how the info will be saved")
+![image of details text file](Screenshots/cd3Sr.png "This is how the info will be saved")
 
 **You only need to replace amount=0 in the code with the number of latest reels or posts you want to get only that many number of latest posts or reels associated with an account**
 

@@ -19,7 +19,7 @@ def login():
     if os.path.exists(SESSION_FILE):
         try:
             cl.load_settings(SESSION_FILE)
-            cl.login(USERNAME, PASSWORD)
+            #cl.login(USERNAME, PASSWORD)
             print("✅ Session loaded successfully!")
             return
         except Exception:
