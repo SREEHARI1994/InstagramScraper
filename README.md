@@ -17,8 +17,8 @@ Images of the App In Action
 ![image of the app in action](Screenshots/appBydate5.png )
 ![image of the app in action](Screenshots/appReels1.png )
 ![image of the app in action](Screenshots/appReels2.png )
-![image of the app in action](Screenshots/Stories1.png )
-![image of the app in action](Screenshots/Stories2.png )
+![image of the app in action](Screenshots/stories1.png )
+![image of the app in action](Screenshots/stories2.png )
 
 To use the Desktop app which provides buttons for easy download,as tkinter comes preinstalled with python,
 just clone this repository and open DesktopApplication Folder and then click on app.py python program.
@@ -30,8 +30,7 @@ Download Reels buttons will download all posts(posts stands for all non reel med
 downloaded to that folder respectively whereas setting the start and end date will only download posts or 
 reels within that date range and setting the Number of things field will only download that many latest 
 posts or reels(pinned posts or reels will come first followed by the most recently uploaded one)
-(Download Highlights script in the Individual Scripts Folder is working fine and will be soon integrated into
-the app)
+
 If you prefer running individual python scripts for your specific needs, then you might consider the programs
 in Individual Scripts FOlder
 
@@ -41,6 +40,8 @@ intagram challenged you, thereby requiring you to enter code sent via email or r
 
 **Ignore Key Error while using Download Url**
 **Ignore any other Error too as long as your download works**
+
+ALso in the case of posts, when you try to download posts of an account having greater than 1000 or 2000 number of posts, then Instagram might simply deny you that request. As the program fetches all posts in one go from Instagram and then applies Date or Number Filter, even downloading just few posts or even one using these filters will also fail in such a case. Unfortunately this is just Instgram being angry at scarpping their content and even after trying all sorts of things,I couldn't overcome this. Reels should work just fine, but for post/posts of accounts having large number of posts in case the app doesn't work you might need to look for other solutions like Instaloader.
 
 **Details Of Scripts**
 **downloadBydate.py** program downloads reels or posts between any given two dates window or posted on a single date.It even gets all the details associated with each post including the comments and saves it as separate .txt files for each post/reel.

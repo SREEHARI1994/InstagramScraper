@@ -202,7 +202,7 @@ def main_ui():
                 username_var.get(), folder_var.get()])).pack(pady=2)
     
     tk.Button(btn_frame, text="Download Highlights", width=25,
-            command=lambda: run_script("downloadHighlights.py", [
+            command=lambda: run_script("downloadHighlightsApp.py", [
                 username_var.get(), folder_var.get()])).pack(pady=2)
 
     # Terminal Output
