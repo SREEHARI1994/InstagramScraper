@@ -180,7 +180,7 @@ def download_posts_between_dates(username, start_date, end_date=None):
         end_date = start_date
     #posts = cl.user_medias(user_id)  # Limit to 10 posts to avoid restrictions
     try:
-        posts = [m for m in cl.user_medias(user_id, amount=0) if m.media_type != 2]  # Exclude reels
+        posts = [m for m in cl.user_medias(user_id) if m.media_type != 2]  # Exclude reels
     except KeyError as e:
         print(f"⚠️ Warning: KeyError encountered: {e}, but continuing...")
         posts = []
@@ -189,22 +189,36 @@ def download_posts_between_dates(username, start_date, end_date=None):
     def download_post(index, post):
         date_str = post.taken_at.strftime("%Y-%m-%d")
 
-        # Download each resource in the post (multiple images/videos)
-        for media_index, resource in enumerate(post.resources, start=1):
-            ext = "mp4" if resource.video_url else "jpg"
-            url = resource.video_url if ext == "mp4" else resource.thumbnail_url
-            filename = os.path.join(SAVE_FOLDER, f"post{index}_{date_str}_{media_index}.{ext}")
+        # Case 1: Carousel posts (albums)
+        if hasattr(post, "resources") and post.resources:
+            for media_index, resource in enumerate(post.resources, start=1):
+                ext = "mp4" if resource.video_url else "jpg"
+                url = resource.video_url if ext == "mp4" else resource.thumbnail_url
+                filename = os.path.join(SAVE_FOLDER, f"post{index}_{date_str}_{media_index}.{ext}")
+                download_file(url, filename)
 
-            download_file(url, filename)
+                # Save video thumbnail
+                if ext == "mp4" and resource.thumbnail_url:
+                    thumb_filename = os.path.join(SAVE_FOLDER, f"post{index}_{date_str}_{media_index}_thumb.jpg")
+                    download_file(resource.thumbnail_url, thumb_filename)
 
-            # Download thumbnail for video posts
-            if ext == "mp4" and resource.thumbnail_url:
-                thumb_filename = os.path.join(SAVE_FOLDER, f"post{index}_{date_str}_{media_index}_thumb.jpg")
-                download_file(resource.thumbnail_url, thumb_filename)
+        # Case 2: Single image or video posts
+        else:
+            ext = "mp4" if getattr(post, "video_url", None) else "jpg"
+            url = getattr(post, "video_url", None) or getattr(post, "thumbnail_url", None)
+            if url:
+                filename = os.path.join(SAVE_FOLDER, f"post{index}_{date_str}.{ext}")
+                download_file(url, filename)
+
+                # Save video thumbnail if available
+                if ext == "mp4" and getattr(post, "thumbnail_url", None):
+                    thumb_filename = os.path.join(SAVE_FOLDER, f"post{index}_{date_str}_thumb.jpg")
+                    download_file(post.thumbnail_url, thumb_filename)
 
         # Save post metadata
         metadata_filename = os.path.join(SAVE_FOLDER, f"post{index}_{date_str}.txt")
         save_post_info(post, metadata_filename)
+
 
     threads = []
     valid_posts=[post for post in posts if is_within_date_range(post, start_date, end_date)]
@@ -216,7 +230,7 @@ def download_posts_between_dates(username, start_date, end_date=None):
         threads.append(thread)
         thread.start()
         time.sleep(random.uniform(1, 3))  # Delay between thread starts
-    print(f"total no of posts to download={len(posts)}\n")
+    print(f"total no of posts to download={len(valid_posts)}\n")
     for thread in threads:
         thread.join()
 

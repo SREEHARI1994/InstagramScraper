@@ -1,7 +1,10 @@
 # InstagramScraper
 Download photos,reels and stories as well as highlights of any instagram account, public or Private(that you have access to) to your PC folders
 
-Install instagrapi which relies on Instagrams official API for fetching content so you don't have to worry much about authorisation issues
+**Download the app directly from this [GumRoad Link](https://sreehari083.gumroad.com/l/wlgceb)**
+
+Or for those who wants to play with the code,assuming you have already installed and configured Python,
+Install instagrapi which which works usinh Instagrams official API for fetching content so you don't have to worry much about authorisation issues
 
 ```
 pip install instagrapi

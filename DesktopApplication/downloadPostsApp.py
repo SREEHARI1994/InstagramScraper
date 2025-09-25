@@ -13,7 +13,7 @@ if len(sys.argv) < 4:
 target_username = sys.argv[1]
 folder = sys.argv[2]
 number_of_things=int(sys.argv[3])
-print(str(number_of_things))
+#print(str(number_of_things))
 
 # Instagram Login Credentials
 SAVE_FOLDER=folder

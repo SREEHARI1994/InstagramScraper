@@ -16,7 +16,8 @@ if len(sys.argv) < 4:
 target_username = sys.argv[1]
 SAVE_FOLDER = sys.argv[2]
 number_of_things=int(sys.argv[3])
-print(str(number_of_things))
+amount=number_of_things
+#print(str(number_of_things))
 
 # Instagram Credentials
 SESSION_FILE = "session.json"
@@ -43,7 +44,7 @@ os.makedirs(SAVE_FOLDER, exist_ok=True)
 user_id = cl.user_id_from_username(target_username)
 
 # Fetch All Reels (1 API Call)
-reels = cl.user_clips(user_id, amount=0) #replace amount=0 with the number to get only that many number of latest reels
+reels = cl.user_clips(user_id, amount) #replace amount=0 with the number to get only that many number of latest reels
 total=len(reels)
 print(f"Total number of reels to download is {total} Stand by \n")
 downloaded=0
@@ -103,7 +104,7 @@ for thread in threads:
 print("error + download="+str(error+downloaded))
 if (downloaded + error)==total:
     print("✅ All Reels Downloaded Successfully!")
-    os._exit(0)
+    #os._exit(0)
 
 
 
