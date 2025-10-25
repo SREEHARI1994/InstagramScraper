@@ -12,6 +12,29 @@ import io
 from contextlib import redirect_stdout, redirect_stderr
 
 
+# ------------------ Device Rotation ------------------
+from instagrapi import Client
+
+DEVICE_LIST = [
+    {"app_version": "123.0.0.21.114", "android_version": 24, "android_release": "7.0", "dpi": "640dpi", "resolution": "1440x2560", "manufacturer": "samsung", "device": "SM-G935F", "model": "hero2lte", "cpu": "samsungexynos8890"},
+    {"app_version": "150.0.0.33.120", "android_version": 29, "android_release": "10.0", "dpi": "420dpi", "resolution": "1080x2340", "manufacturer": "google", "device": "Pixel 4a", "model": "sunfish", "cpu": "qcom"},
+    {"app_version": "190.0.0.41.120", "android_version": 30, "android_release": "11.0", "dpi": "480dpi", "resolution": "1080x2400", "manufacturer": "OnePlus", "device": "OnePlus8", "model": "IN2011", "cpu": "qcom"},
+    {"app_version": "210.0.0.27.120", "android_version": 33, "android_release": "13.0", "dpi": "560dpi", "resolution": "1440x3120", "manufacturer": "LGE", "device": "LM-G820", "model": "G8", "cpu": "qcom"},
+    {"app_version": "250.0.0.50.120", "android_version": 34, "android_release": "14.0", "dpi": "560dpi", "resolution": "1440x3120", "manufacturer": "samsung", "device": "SM-S918B", "model": "Galaxy S23 Ultra", "cpu": "qcom"},
+]
+
+current_device_index = 0  # global index tracker
+
+def get_next_device():
+    """Rotate to next device and return a Client instance"""
+    global current_device_index
+    current_device_index = (current_device_index + 1) % len(DEVICE_LIST)
+    device = DEVICE_LIST[current_device_index]
+    cl = Client()
+    cl.set_device(device)
+    return cl
+
+
 # ------------------ Login Check ------------------
 SESSION_FILE = "session.json"
 SESSION_EXISTS = os.path.exists(SESSION_FILE)
@@ -141,10 +164,11 @@ def login():
     login_status_label.config(text="Attempting to Login. Please wait...", fg="blue")
     root.update_idletasks()
 
-    from instagrapi import Client
+    
     import threading
 
     cl = Client()
+    cl.set_device(DEVICE_LIST[current_device_index])  # <-- start with current device
     code_event = threading.Event()
     code_value = {"code": None}
 
@@ -206,8 +230,46 @@ def login():
                 fg="red"
             )
             print("Login Error:", e)
+            show_change_device_ui()  # 👈 show our new helper UI section
 
     threading.Thread(target=do_login, daemon=True).start()
+
+def show_change_device_ui():
+    """Show the device rotation hint and button below failed login message."""
+    if hasattr(root, "device_hint_shown") and root.device_hint_shown:
+        return  # prevent duplicates
+    root.device_hint_shown = True
+
+    hint_label = tk.Label(
+        login_frame,
+        text=("If you feel after many failed login attempts that Instagram has blocked this app "
+              "from scraping, then try changing device by clicking the button below."),
+        wraplength=400,
+        justify="center",
+        fg="gray"
+    )
+    hint_label.grid(row=4, columnspan=2, pady=(10, 5))
+
+    # Create button showing current device number
+    def change_device_action():
+        global current_device_index
+        cl = get_next_device()
+        current_device = DEVICE_LIST[current_device_index]
+        messagebox.showinfo(
+            "Device Changed",
+            f"Device changed to:\n{current_device['model']} ({current_device['manufacturer']})"
+        )
+        update_button_text()  # refresh button label
+
+    def update_button_text():
+        change_btn.config(
+            text=f"Change Device ({current_device_index + 1}/{len(DEVICE_LIST)})"
+        )
+
+    change_btn = tk.Button(login_frame, command=change_device_action)
+    change_btn.grid(row=5, columnspan=2, pady=5)
+
+    update_button_text()  # set initial text
 
 
 def main_ui():
