@@ -1,0 +1,36 @@
+{
+    "uuids": {
+        "phone_id": "0887fa74-27bf-4049-800f-680be29e721e",
+        "uuid": "8d232c4d-242d-4be7-b15c-2a909ffbc96b",
+        "client_session_id": "42ea1256-9b82-41c0-b62c-5c28266c559f",
+        "advertising_id": "eb33f488-cf9c-4b34-92f9-0d5a3c5a8e3e",
+        "android_device_id": "android-e19d6444163605bc",
+        "request_id": "69d8ad69-c422-447c-974e-4880052f668c",
+        "tray_session_id": "f899f2d3-d6ef-4aac-b1dd-543b6cdce24a"
+    },
+    "mid": "aP06CQABAAGXRZTwQyjVaI5sN3oi",
+    "ig_u_rur": null,
+    "ig_www_claim": null,
+    "authorization_data": {
+        "ds_user_id": "65218872605",
+        "sessionid": "65218872605%3AT1NRaH3hMFEx6J%3A13%3AAYi1zfqb-WZ-fvoqtMK2_p0UWzMrSD-k7DTJYUpKdg"
+    },
+    "cookies": {},
+    "last_login": 1761426112.3383608,
+    "device_settings": {
+        "app_version": "123.0.0.21.114",
+        "android_version": 24,
+        "android_release": "7.0",
+        "dpi": "640dpi",
+        "resolution": "1440x2560",
+        "manufacturer": "samsung",
+        "device": "SM-G935F",
+        "model": "hero2lte",
+        "cpu": "samsungexynos8890"
+    },
+    "user_agent": "Instagram 269.0.0.18.75 Android (26/8.0.0; 480dpi; 1080x1920; OnePlus; 6T Dev; devitron; qcom; en_US; 314665256)",
+    "country": "US",
+    "country_code": 1,
+    "locale": "en_US",
+    "timezone_offset": -14400
+}
