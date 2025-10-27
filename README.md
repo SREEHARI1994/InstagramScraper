@@ -3,6 +3,8 @@ Download photos,reels and stories as well as highlights of any instagram account
 
 **Download the app directly from this [GumRoad Link](https://sreehari083.gumroad.com/l/wlgceb)**
 
+(*And if you had downloaded the old versions of the app before October 28th 25, then please uninstall and again download and install the latest version which fixed some bugs and allows certain workarounds in case Instagram prevents you from acessing its contents via app.The problem of Windows misidentifying the app as threat and removing it have also been resolved in the later versions with the availability of an installer for the app*)
+
 Or for those who wants to play with the code,assuming you have already installed and configured Python,
 Install instagrapi which which works usinh Instagrams official API for fetching content so you don't have to worry much about authorisation issues
 
